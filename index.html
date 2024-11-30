@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Przeglądy - Wszystkie Rekordy</title>
+		<link rel="stylesheet" href="./style/style.css" />
+	</head>
+	<body>
+		<h1>Wszystkie Rekordy Przeglądów</h1>
+		<table id="recordsTable">
+			<thead>
+				<tr>
+					<th>Numer Seryjny</th>
+					<th>Rodzaj Badania</th>
+					<th>Obiekt</th>
+					<th>Firma</th>
+					<th>Lokalizacja</th>
+					<th>Producent Stacji</th>
+					<th>Model Stacji</th>
+					<th>Przegląd 2022</th>
+					<th>Przegląd 2023</th>
+					<th>Przegląd 2024</th>
+					<th>Przegląd 2025</th>
+					<th>Protokół 2022</th>
+					<th>Protokół 2023</th>
+					<th>Protokół 2024</th>
+					<th>Protokół 2025</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Records will be inserted here dynamically -->
+			</tbody>
+		</table>
+
+		<script>
+			// Fetch records from the PHP API and display in the table
+			fetch('api.php')
+				.then((response) => response.json())
+				.then((data) => {
+					const tableBody = document.querySelector('#recordsTable tbody');
+					data.forEach((record) => {
+						const row = document.createElement('tr');
+						row.innerHTML = `
+                        <td>${record.numer_seryjny}</td>
+                        <td>${record.rodzaj_badania}</td>
+                        <td>${record.obiekt}</td>
+                        <td>${record.firma}</td>
+                        <td>${record.lokalizacja}</td>
+                        <td>${record.producent_stacji}</td>
+                        <td>${record.model_stacji}</td>
+                        <td>${record.przeglad_2022 || ''}</td>
+                        <td>${record.przeglad_2023 || ''}</td>
+                        <td>${record.przeglad_2024 || ''}</td>
+                        <td>${record.przeglad_2025 || ''}</td>
+                        <td>${record.protokol_2022 || ''}</td>
+                        <td>${record.protokol_2023 || ''}</td>
+                        <td>${record.protokol_2024 || ''}</td>
+                        <td>${record.protokol_2025 || ''}</td>
+                    `;
+						tableBody.appendChild(row);
+					});
+				})
+				.catch((error) => console.error('Error fetching data:', error));
+		</script>
+	</body>
+</html>

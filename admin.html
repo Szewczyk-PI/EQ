@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Panel Administratora - Edycja Rekordów Przeglądów</title>
+		<link rel="stylesheet" href="./style/style.css" />
+	</head>
+	<body>
+		<h1>Panel Administratora - Edycja Rekordów Przeglądów</h1>
+		<table id="recordsTable">
+			<thead>
+				<tr>
+					<th>Numer Seryjny</th>
+					<th>Rodzaj Badania</th>
+					<th>Obiekt</th>
+					<th>Firma</th>
+					<th>Lokalizacja</th>
+					<th>Producent Stacji</th>
+					<th>Model Stacji</th>
+					<th>Przegląd 2022</th>
+					<th>Przegląd 2023</th>
+					<th>Przegląd 2024</th>
+					<th>Przegląd 2025</th>
+					<th>Protokół 2022</th>
+					<th>Protokół 2023</th>
+					<th>Protokół 2024</th>
+					<th>Protokół 2025</th>
+					<th>Akcje</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Rekordy zostaną tutaj dodane dynamicznie -->
+			</tbody>
+		</table>
+
+		<script src="scripts.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				// Fetch and display records initially
+				fetch('api.php')
+					.then((response) => response.json())
+					.then((data) => {
+						const tableBody = document.querySelector('#recordsTable tbody');
+						data.forEach((record) => {
+							const row = document.createElement('tr');
+							row.innerHTML = `
+                            <td contenteditable="true">${
+															record.numer_seryjny
+														}</td>
+                            <td contenteditable="true">${
+															record.rodzaj_badania
+														}</td>
+                            <td contenteditable="true">${record.obiekt}</td>
+                            <td contenteditable="true">${record.firma}</td>
+                            <td contenteditable="true">${
+															record.lokalizacja
+														}</td>
+                            <td contenteditable="true">${
+															record.producent_stacji
+														}</td>
+                            <td contenteditable="true">${
+															record.model_stacji
+														}</td>
+                            <td contenteditable="true">${
+															record.przeglad_2022 || ''
+														}</td>
+                            <td contenteditable="true">${
+															record.przeglad_2023 || ''
+														}</td>
+                            <td contenteditable="true">${
+															record.przeglad_2024 || ''
+														}</td>
+                            <td contenteditable="true">${
+															record.przeglad_2025 || ''
+														}</td>
+                            <td contenteditable="true">${
+															record.protokol_2022 || ''
+														}</td>
+                            <td contenteditable="true">${
+															record.protokol_2023 || ''
+														}</td>
+                            <td contenteditable="true">${
+															record.protokol_2024 || ''
+														}</td>
+                            <td contenteditable="true">${
+															record.protokol_2025 || ''
+														}</td>
+                            <td><button onclick="saveRecord(this)">Zapisz</button></td>
+                        `;
+							tableBody.appendChild(row);
+						});
+					})
+					.catch((error) => console.error('Error fetching data:', error));
+			});
+
+			function saveRecord(button) {
+				const row = button.parentElement.parentElement;
+				const record = {
+					numer_seryjny: row.cells[0].textContent.trim(),
+					rodzaj_badania: row.cells[1].textContent.trim(),
+					obiekt: row.cells[2].textContent.trim(),
+					firma: row.cells[3].textContent.trim(),
+					lokalizacja: row.cells[4].textContent.trim(),
+					producent_stacji: row.cells[5].textContent.trim(),
+					model_stacji: row.cells[6].textContent.trim(),
+					przeglad_2022: row.cells[7].textContent.trim(),
+					przeglad_2023: row.cells[8].textContent.trim(),
+					przeglad_2024: row.cells[9].textContent.trim(),
+					przeglad_2025: row.cells[10].textContent.trim(),
+					protokol_2022: row.cells[11].textContent.trim(),
+					protokol_2023: row.cells[12].textContent.trim(),
+					protokol_2024: row.cells[13].textContent.trim(),
+					protokol_2025: row.cells[14].textContent.trim(),
+				};
+
+				// Send the updated record to the server for saving
+				fetch('api.php', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(record),
+				})
+					.then((response) => response.json())
+					.then((result) => {
+						if (result.success) {
+							alert('Rekord został zaktualizowany pomyślnie');
+						} else {
+							alert('Błąd podczas aktualizacji rekordu');
+						}
+					})
+					.catch((error) => console.error('Error updating record:', error));
+			}
+		</script>
+	</body>
+</html>
