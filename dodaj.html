@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dodaj Nową Stację</title>
+		<link rel="stylesheet" href="style/style.css" />
+	</head>
+	<body>
+		<h1>Dodaj Nową Stację Ładowania</h1>
+		<form id="addStationForm" method="post" action="api_add.php">
+			<label for="numer_seryjny">Numer Seryjny:</label>
+			<input
+				type="text"
+				id="numer_seryjny"
+				name="numer_seryjny"
+				required
+			/><br />
+
+			<label for="rodzaj_badania">Rodzaj Badania:</label>
+			<input
+				type="text"
+				id="rodzaj_badania"
+				name="rodzaj_badania"
+				required
+			/><br />
+
+			<label for="obiekt">Obiekt:</label>
+			<input type="text" id="obiekt" name="obiekt" required /><br />
+
+			<label for="firma">Firma:</label>
+			<input type="text" id="firma" name="firma" required /><br />
+
+			<label for="lokalizacja">Lokalizacja (Miasto, Ulica, Numer):</label>
+			<input type="text" id="lokalizacja" name="lokalizacja" required /><br />
+
+			<label for="producent_stacji">Producent Stacji:</label>
+			<input
+				type="text"
+				id="producent_stacji"
+				name="producent_stacji"
+				required
+			/><br />
+
+			<label for="model_stacji">Model Stacji:</label>
+			<input type="text" id="model_stacji" name="model_stacji" required /><br />
+
+			<label for="przeglad_2025">Przegląd 2025:</label>
+			<input type="date" id="przeglad_2025" name="przeglad_2025" /><br />
+
+			<label for="protokol_2025">Protokół 2025:</label>
+			<input type="text" id="protokol_2025" name="protokol_2025" /><br />
+
+			<button type="submit">Dodaj Stację</button>
+		</form>
+
+		<script>
+			document
+				.getElementById('addStationForm')
+				.addEventListener('submit', function (event) {
+					event.preventDefault();
+
+					const formData = new FormData(event.target);
+					const data = Object.fromEntries(formData.entries());
+
+					fetch('api_add.php', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(data),
+					})
+						.then((response) => {
+							if (!response.ok) {
+								return response.text().then((text) => {
+									console.error('Server response:', text);
+									throw new Error(
+										'Network response was not ok. Server response: ' + text
+									);
+								});
+							}
+							return response.json();
+						})
+						.then((result) => {
+							if (result.success) {
+								alert('Stacja została dodana pomyślnie');
+							} else {
+								console.error('Server error:', result.message);
+								alert('Błąd podczas dodawania stacji: ' + result.message);
+							}
+						})
+						.catch((error) => {
+							console.error('Błąd:', error.message);
+							alert('Wystąpił błąd: ' + error.message);
+						});
+				});
+		</script>
+	</body>
+</html>
