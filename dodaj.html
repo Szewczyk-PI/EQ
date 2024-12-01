@@ -7,7 +7,6 @@
 		<link rel="stylesheet" href="style/style.css" />
 	</head>
 	<body>
-		<h1>Dodaj Nową Stację Ładowania</h1>
 		<aside>
 			<nav>
 				<ul>
@@ -19,53 +18,59 @@
 				</ul>
 			</nav>
 		</aside>
+		<div class="content">
+			<h1>Dodaj Nową Stację Ładowania</h1>
+			<form id="addStationForm" method="post" action="api_add.php">
+				<label for="numer_seryjny">Numer Seryjny:</label>
+				<input
+					type="text"
+					id="numer_seryjny"
+					name="numer_seryjny"
+					required
+				/><br />
 
-		<form id="addStationForm" method="post" action="api_add.php">
-			<label for="numer_seryjny">Numer Seryjny:</label>
-			<input
-				type="text"
-				id="numer_seryjny"
-				name="numer_seryjny"
-				required
-			/><br />
+				<label for="rodzaj_badania">Rodzaj Badania:</label>
+				<input
+					type="text"
+					id="rodzaj_badania"
+					name="rodzaj_badania"
+					required
+				/><br />
 
-			<label for="rodzaj_badania">Rodzaj Badania:</label>
-			<input
-				type="text"
-				id="rodzaj_badania"
-				name="rodzaj_badania"
-				required
-			/><br />
+				<label for="obiekt">Obiekt:</label>
+				<input type="text" id="obiekt" name="obiekt" required /><br />
 
-			<label for="obiekt">Obiekt:</label>
-			<input type="text" id="obiekt" name="obiekt" required /><br />
+				<label for="firma">Firma:</label>
+				<input type="text" id="firma" name="firma" required /><br />
 
-			<label for="firma">Firma:</label>
-			<input type="text" id="firma" name="firma" required /><br />
+				<label for="lokalizacja">Lokalizacja (Miasto, Ulica, Numer):</label>
+				<input type="text" id="lokalizacja" name="lokalizacja" required /><br />
 
-			<label for="lokalizacja">Lokalizacja (Miasto, Ulica, Numer):</label>
-			<input type="text" id="lokalizacja" name="lokalizacja" required /><br />
+				<label for="producent_stacji">Producent Stacji:</label>
+				<input
+					type="text"
+					id="producent_stacji"
+					name="producent_stacji"
+					required
+				/><br />
 
-			<label for="producent_stacji">Producent Stacji:</label>
-			<input
-				type="text"
-				id="producent_stacji"
-				name="producent_stacji"
-				required
-			/><br />
+				<label for="model_stacji">Model Stacji:</label>
+				<input
+					type="text"
+					id="model_stacji"
+					name="model_stacji"
+					required
+				/><br />
 
-			<label for="model_stacji">Model Stacji:</label>
-			<input type="text" id="model_stacji" name="model_stacji" required /><br />
+				<label for="przeglad_2025">Przegląd 2025:</label>
+				<input type="date" id="przeglad_2025" name="przeglad_2025" /><br />
 
-			<label for="przeglad_2025">Przegląd 2025:</label>
-			<input type="date" id="przeglad_2025" name="przeglad_2025" /><br />
+				<label for="protokol_2025">Protokół 2025:</label>
+				<input type="text" id="protokol_2025" name="protokol_2025" /><br />
 
-			<label for="protokol_2025">Protokół 2025:</label>
-			<input type="text" id="protokol_2025" name="protokol_2025" /><br />
-
-			<button type="submit">Dodaj Stację</button>
-		</form>
-
+				<button type="submit">Dodaj Stację</button>
+			</form>
+		</div>
 		<script>
 			document
 				.getElementById('addStationForm')

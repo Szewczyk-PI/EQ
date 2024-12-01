@@ -7,7 +7,6 @@
 		<link rel="stylesheet" href="./style/style.css" />
 	</head>
 	<body>
-		<h1>Panel Administratora - Edycja Rekordów Przeglądów</h1>
 		<aside>
 			<nav>
 				<ul>
@@ -19,33 +18,34 @@
 				</ul>
 			</nav>
 		</aside>
-
-		<table id="recordsTable">
-			<thead>
-				<tr>
-					<th>Numer Seryjny</th>
-					<th>Rodzaj Badania</th>
-					<th>Obiekt</th>
-					<th>Firma</th>
-					<th>Lokalizacja</th>
-					<th>Producent Stacji</th>
-					<th>Model Stacji</th>
-					<th>Przegląd 2022</th>
-					<th>Przegląd 2023</th>
-					<th>Przegląd 2024</th>
-					<th>Przegląd 2025</th>
-					<th>Protokół 2022</th>
-					<th>Protokół 2023</th>
-					<th>Protokół 2024</th>
-					<th>Protokół 2025</th>
-					<th>Akcje</th>
-				</tr>
-			</thead>
-			<tbody>
-				<!-- Rekordy zostaną tutaj dodane dynamicznie -->
-			</tbody>
-		</table>
-
+		<div class="content">
+			<h1>Panel Administratora - Edycja Rekordów Przeglądów</h1>
+			<table id="recordsTable">
+				<thead>
+					<tr>
+						<th>Numer Seryjny</th>
+						<th>Rodzaj Badania</th>
+						<th>Obiekt</th>
+						<th>Firma</th>
+						<th>Lokalizacja</th>
+						<th>Producent Stacji</th>
+						<th>Model Stacji</th>
+						<th>Przegląd 2022</th>
+						<th>Przegląd 2023</th>
+						<th>Przegląd 2024</th>
+						<th>Przegląd 2025</th>
+						<th>Protokół 2022</th>
+						<th>Protokół 2023</th>
+						<th>Protokół 2024</th>
+						<th>Protokół 2025</th>
+						<th>Akcje</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Rekordy zostaną tutaj dodane dynamicznie -->
+				</tbody>
+			</table>
+		</div>
 		<script src="scripts.js"></script>
 		<script>
 			document.addEventListener('DOMContentLoaded', function () {

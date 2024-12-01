@@ -7,7 +7,6 @@
 		<link rel="stylesheet" href="./style/style.css" />
 	</head>
 	<body>
-		<h1>Wszystkie Rekordy Przeglądów</h1>
 		<aside>
 			<nav>
 				<ul>
@@ -20,30 +19,33 @@
 			</nav>
 		</aside>
 
-		<table id="recordsTable">
-			<thead>
-				<tr>
-					<th>Numer Seryjny</th>
-					<th>Rodzaj Badania</th>
-					<th>Obiekt</th>
-					<th>Firma</th>
-					<th>Lokalizacja</th>
-					<th>Producent Stacji</th>
-					<th>Model Stacji</th>
-					<th>Przegląd 2022</th>
-					<th>Przegląd 2023</th>
-					<th>Przegląd 2024</th>
-					<th>Przegląd 2025</th>
-					<th>Protokół 2022</th>
-					<th>Protokół 2023</th>
-					<th>Protokół 2024</th>
-					<th>Protokół 2025</th>
-				</tr>
-			</thead>
-			<tbody>
-				<!-- Records will be inserted here dynamically -->
-			</tbody>
-		</table>
+		<div class="content">
+			<h1>Wszystkie Rekordy Przeglądów</h1>
+			<table id="recordsTable">
+				<thead>
+					<tr>
+						<th>Numer Seryjny</th>
+						<th>Rodzaj Badania</th>
+						<th>Obiekt</th>
+						<th>Firma</th>
+						<th>Lokalizacja</th>
+						<th>Producent Stacji</th>
+						<th>Model Stacji</th>
+						<th>Przegląd 2022</th>
+						<th>Przegląd 2023</th>
+						<th>Przegląd 2024</th>
+						<th>Przegląd 2025</th>
+						<th>Protokół 2022</th>
+						<th>Protokół 2023</th>
+						<th>Protokół 2024</th>
+						<th>Protokół 2025</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Records will be inserted here dynamically -->
+				</tbody>
+			</table>
+		</div>
 
 		<script>
 			// Fetch records from the PHP API and display in the table
