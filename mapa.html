@@ -57,7 +57,7 @@
 								L.marker([record.latitude, record.longitude])
 									.addTo(map)
 									.bindPopup(
-										`<b>${record.numer_seryjny}</b><br>${record.lokalizacja}`
+										`<b>${record.numer_seryjny}</b><br>${record.lokalizacja}<br>Poprzedni przegląd: ${record.przeglad_2024}`
 									);
 							}
 						});
